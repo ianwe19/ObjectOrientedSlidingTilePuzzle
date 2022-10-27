@@ -25,22 +25,18 @@
 
 
 SlidingPuzzle::SlidingPuzzle() {
-	int counter = 1;
+	this->theBoard = new(int* [3]);
+
 	for (int i = 0; i < 3; i++) {
-		for (int j = 0; j < 3; j++) {
-			this->theBoard[i][j] = counter;
-			counter++;
-		}
+		this->theBoard[i] = new(int[3]);
 	}
 }
 
 SlidingPuzzle::SlidingPuzzle(int width, int height) {
-	int counter = 1;
+	this->theBoard = new(int* [height]);
+
 	for (int i = 0; i < height; i++) {
-		for (int j = 0; j < width; j++) {
-			this->theBoard[i][j] = counter;
-			counter++;
-		}
+		this->theBoard[i] = new(int[width]);
 	}
 }
 
@@ -55,7 +51,14 @@ SlidingPuzzle::~SlidingPuzzle() {
 }
 
 void SlidingPuzzle::initializeBoard() {
+	int counter = 1;
 
+	for (int i = 0; i < NUM_ROWS; i++) {
+		for (int j = 0; j < NUM_COLS; j++) {
+			this->theBoard[i][j] = counter;
+			counter++;
+		}
+	}
 }
 
 bool SlidingPuzzle::isBoardSolved() {

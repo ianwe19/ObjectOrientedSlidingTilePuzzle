@@ -34,6 +34,8 @@ int main() {
 
 	SlidingPuzzle puzzle0;
 
+	puzzle0.initializeBoard();
+
 	puzzle0.printBoard();
 
 	return 0;
