@@ -36,10 +36,13 @@ SlidingPuzzle::SlidingPuzzle() {
 }
 
 SlidingPuzzle::SlidingPuzzle(int width, int height) {
-	this->theBoard = new(int* [height]);
+	this->boardWidth = width;
+	this->boardHeight = height;
+
+	this->theBoard = new(int* [this->boardHeight]);
 
 	for (int i = 0; i < height; i++) {
-		this->theBoard[i] = new(int[width]);
+		this->theBoard[i] = new(int[this->boardHeight]);
 	}
 }
 
