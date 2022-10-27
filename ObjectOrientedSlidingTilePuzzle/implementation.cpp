@@ -2,10 +2,8 @@
 #include <iostream>
 #include <iomanip>
 
-
-#define NUM_ROWS		3		
-#define NUM_COLS		3		
-#define PIVOT         NUM_ROWS * NUM_COLS // highest number on board to be changed to *
+	
+#define PIVOT           NUM_ROWS * NUM_COLS // highest number on board to be changed to *
 #define NUM_SCRAMBLE    1000000 // number of times to scramble board
 
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
@@ -27,6 +25,7 @@
 SlidingPuzzle::SlidingPuzzle() {
 	this->boardWidth = 3;
 	this->boardHeight = 3;
+	this->pivotNum = 9;
 
 	this->theBoard = new(int* [3]);
 
@@ -38,17 +37,18 @@ SlidingPuzzle::SlidingPuzzle() {
 SlidingPuzzle::SlidingPuzzle(int width, int height) {
 	this->boardWidth = width;
 	this->boardHeight = height;
+	this->pivotNum = width * height;
 
 	this->theBoard = new(int* [this->boardHeight]);
 
-	for (int i = 0; i < height; i++) {
+	for (int i = 0; i < this->boardHeight; i++) {
 		this->theBoard[i] = new(int[this->boardHeight]);
 	}
 }
 
 SlidingPuzzle::~SlidingPuzzle() {
 	// dealloc memory from each array in ptr array
-	for (int i = 0; i < NUM_ROWS; i++) {
+	for (int i = 0; i < this->boardHeight; i++) {
 		delete[] this->theBoard[i];
 	}
 
@@ -59,8 +59,8 @@ SlidingPuzzle::~SlidingPuzzle() {
 void SlidingPuzzle::initializeBoard() {
 	int counter = 1;
 
-	for (int i = 0; i < NUM_ROWS; i++) {
-		for (int j = 0; j < NUM_COLS; j++) {
+	for (int i = 0; i < this->boardHeight; i++) {
+		for (int j = 0; j < this->boardWidth; j++) {
 			this->theBoard[i][j] = counter;
 			counter++;
 		}
@@ -84,9 +84,9 @@ void SlidingPuzzle::printBoard() {
 	int counter = 1;
 
 
-	for (i = 0; i < NUM_ROWS; i++) {
-		for (j = 0; j < NUM_COLS; j++) {
-			if (theBoard[i][j] == PIVOT) {
+	for (i = 0; i < this->boardHeight; i++) {
+		for (j = 0; j < this->boardWidth; j++) {
+			if (theBoard[i][j] == this->pivotNum;) {
 				std::cout << std::setw(3) << PIVOT_SYMBOL;
 			}
 			else {

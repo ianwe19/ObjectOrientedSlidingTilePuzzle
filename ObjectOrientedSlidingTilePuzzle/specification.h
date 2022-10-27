@@ -7,6 +7,7 @@ private:
 	int** theBoard;
 	int boardWidth;
 	int boardHeight;
+	int pivotNum;
 
 public:
 	SlidingPuzzle();
