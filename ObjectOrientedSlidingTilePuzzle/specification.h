@@ -5,6 +5,8 @@
 class SlidingPuzzle {
 private:
 	int** theBoard;
+	int boardWidth;
+	int boardHeight;
 
 public:
 	SlidingPuzzle();

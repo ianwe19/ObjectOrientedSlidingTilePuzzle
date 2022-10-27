@@ -25,6 +25,9 @@
 
 
 SlidingPuzzle::SlidingPuzzle() {
+	this->boardWidth = 3;
+	this->boardHeight = 3;
+
 	this->theBoard = new(int* [3]);
 
 	for (int i = 0; i < 3; i++) {
