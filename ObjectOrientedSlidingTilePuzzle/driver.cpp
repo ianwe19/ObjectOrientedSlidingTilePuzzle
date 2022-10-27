@@ -29,7 +29,7 @@ int main() {
 	// seed pseudo rng
 	srand(time(NULL));
 
-	SlidingPuzzle puzzle0(6, 6);
+	SlidingPuzzle puzzle0(4, 6);
 
 	puzzle0.initializeBoard();
 

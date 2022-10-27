@@ -38,12 +38,12 @@ SlidingPuzzle::SlidingPuzzle() {
 SlidingPuzzle::SlidingPuzzle(int width, int height) {
 	this->boardWidth = width;
 	this->boardHeight = height;
-	this->pivotNum = width * height;
+	this->pivotNum = this->boardWidth * this->boardHeight;
 
 	this->theBoard = new(int* [this->boardHeight]);
 
 	for (int i = 0; i < this->boardHeight; i++) {
-		this->theBoard[i] = new(int[this->boardHeight]);
+		this->theBoard[i] = new(int[this->boardWidth]);
 	}
 }
 
@@ -63,13 +63,27 @@ void SlidingPuzzle::initializeBoard() {
 	for (int i = 0; i < this->boardHeight; i++) {
 		for (int j = 0; j < this->boardWidth; j++) {
 			this->theBoard[i][j] = counter;
+
 			counter++;
 		}
 	}
 }
 
 bool SlidingPuzzle::isBoardSolved() {
-	return false;
+	int i, j;
+	int counter = 1;
+
+	for (i = 0; i < this->boardHeight; i++) {
+		for (j = 0; j < this->boardWidth; j++) {
+			if (this->theBoard[i][j] != counter) {
+				return false;
+
+				break;
+			}
+			counter++;
+		}
+	}
+	return true;
 }
 
 bool SlidingPuzzle::slideTile(int directionCode) {
@@ -82,8 +96,8 @@ void SlidingPuzzle::scrambleBoard() {
 
 void SlidingPuzzle::printBoard() {
 	int i, j;
-	int counter = 1;
 
+	int counter = 1;
 
 	for (i = 0; i < this->boardHeight; i++) {
 		for (j = 0; j < this->boardWidth; j++) {
@@ -92,6 +106,7 @@ void SlidingPuzzle::printBoard() {
 			}
 			else {
 				if (theBoard[i][j] == counter) {
+					// color stuff here
 				}
 				else {
 				}
