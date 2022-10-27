@@ -1,4 +1,6 @@
 #include "specification.h"
+#include <iostream>
+#include <iomanip>
 
 
 #define NUM_ROWS		3		
@@ -69,5 +71,25 @@ void SlidingPuzzle::scrambleBoard() {
 }
 
 void SlidingPuzzle::printBoard() {
+	int i, j;
+	int counter = 1;
 
+
+	for (i = 0; i < NUM_ROWS; i++) {
+		for (j = 0; j < NUM_COLS; j++) {
+			if (theBoard[i][j] == PIVOT) {
+				std::cout << std::setw(3) << PIVOT_SYMBOL;
+			}
+			else {
+				if (theBoard[i][j] == counter) {
+				}
+				else {
+				}
+				std::cout << std::setw(3) << theBoard[i][j];
+			}
+			counter++;
+		}
+		std::cout << "\n";
+	}
+	std::cout << "\n";
 }

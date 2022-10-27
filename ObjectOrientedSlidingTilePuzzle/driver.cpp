@@ -19,6 +19,7 @@
 #define SLIDE_RIGHT		4		// pass to slideTile() to trigger RIGHT movement
 #define BRUTE_FORCE     999     // pass to inputLoop() to solve with RNG
 
+// if there isnt an extra line here, the comment on what is currently line 23 inexplicably causes a compiler error
 #define UNSET			-1		// used to arbitrarily indicate an undetermined state in a constuct
 
 #define COLOR_DEFAULT	7
@@ -32,6 +33,8 @@ int main() {
 	srand(time(NULL));
 
 	SlidingPuzzle puzzle0;
+
+	puzzle0.printBoard();
 
 	return 0;
 }

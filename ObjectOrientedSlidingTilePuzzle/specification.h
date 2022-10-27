@@ -9,6 +9,7 @@ private:
 public:
 	SlidingPuzzle();
 	SlidingPuzzle(int, int);
+	~SlidingPuzzle();
 
 	void initializeBoard();
 	bool isBoardSolved();
