@@ -3,7 +3,6 @@
 #include <iomanip>
 
 	
-#define PIVOT           NUM_ROWS * NUM_COLS // highest number on board to be changed to *
 #define NUM_SCRAMBLE    1000000 // number of times to scramble board
 
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
@@ -22,6 +21,7 @@
 #define COLOR_GREEN		10
 
 
+// constructor for default board of 3x3
 SlidingPuzzle::SlidingPuzzle() {
 	this->boardWidth = 3;
 	this->boardHeight = 3;
@@ -34,6 +34,7 @@ SlidingPuzzle::SlidingPuzzle() {
 	}
 }
 
+// constructor for user defined board size
 SlidingPuzzle::SlidingPuzzle(int width, int height) {
 	this->boardWidth = width;
 	this->boardHeight = height;
