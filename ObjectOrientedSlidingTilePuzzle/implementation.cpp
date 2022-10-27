@@ -87,18 +87,18 @@ void SlidingPuzzle::printBoard() {
 	for (i = 0; i < this->boardHeight; i++) {
 		for (j = 0; j < this->boardWidth; j++) {
 			if (theBoard[i][j] == this->pivotNum) {
-				std::cout << std::setw(3) << PIVOT_SYMBOL;
+				std::cout << std::setw(4) << PIVOT_SYMBOL;
 			}
 			else {
 				if (theBoard[i][j] == counter) {
 				}
 				else {
 				}
-				std::cout << std::setw(3) << theBoard[i][j];
+				std::cout << std::setw(4) << theBoard[i][j];
 			}
 			counter++;
 		}
-		std::cout << "\n";
+		std::cout << "\n\n";
 	}
 	std::cout << "\n";
 }
