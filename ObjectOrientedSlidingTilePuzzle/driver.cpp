@@ -5,9 +5,6 @@
 #include <Windows.h>
 
 
-#define NUM_ROWS		3		
-#define NUM_COLS		3		
-#define PIVOT         NUM_ROWS * NUM_COLS // highest number on board to be changed to *
 #define NUM_SCRAMBLE    1000000 // number of times to scramble board
 
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
