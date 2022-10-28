@@ -22,5 +22,6 @@ public:
 	void scrambleBoard();
 	void printBoard();
 	void randomMove();
+	int gameLoop(int);
 };
 #endif

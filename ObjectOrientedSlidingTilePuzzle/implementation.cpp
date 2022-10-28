@@ -191,3 +191,47 @@ void SlidingPuzzle::randomMove() {
 		break;
 	}
 }
+
+
+int SlidingPuzzle::gameLoop(int directionCode) {
+	int moveCounter = 0;
+
+	while (directionCode == UNSET) {
+		std::cout << "Input swap direction with WASD, or press B to solve with RNG\r";
+		keyStroke = _getch();
+
+		switch (keyStroke) {
+		case 'w':
+			directionCode = SLIDE_UP;
+			slideTile(theBoard, SLIDE_UP);
+			moveCounter++;
+			break;
+		case 'a':
+			directionCode = SLIDE_LEFT;
+			slideTile(theBoard, SLIDE_LEFT);
+			moveCounter++;
+			break;
+		case 's':
+			directionCode = SLIDE_DOWN;
+			slideTile(theBoard, SLIDE_DOWN);
+			moveCounter++;
+			break;
+		case 'd':
+			directionCode = SLIDE_RIGHT;
+			slideTile(theBoard, SLIDE_RIGHT);
+			moveCounter++;
+			break;
+		case 'b':
+			while (!isBoardSolved(theBoard)) {
+				randomMove(theBoard);
+				moveCounter++;
+			}
+			system("cls");
+			directionCode = BRUTE_FORCE;
+			break;
+		default:
+			directionCode = UNSET;
+		}
+	}
+	return moveCounter;
+}
