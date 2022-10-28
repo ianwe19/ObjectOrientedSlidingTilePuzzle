@@ -3,8 +3,6 @@
 #include <iomanip>
 
 	
-#define NUM_SCRAMBLE    1000000 // number of times to scramble board
-
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
 
 // direction codes (part of the slideTile() interface)
@@ -145,11 +143,8 @@ bool SlidingPuzzle::slideTile(int directionCode) {
 
 
 void SlidingPuzzle::scrambleBoard() {
-	int i = int(0);
-
-	while (i < NUM_SCRAMBLE) {
+	for (int i = 0; i < this->scrambleNum; i++) {
 		randomMove();
-		i++;
 	}
 }
 
