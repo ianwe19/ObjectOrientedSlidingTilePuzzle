@@ -23,5 +23,6 @@ public:
 	void printBoard();
 	void randomMove();
 	void gameLoop(int, int);
+	int getTotalMoveCount();
 };
 #endif

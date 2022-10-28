@@ -233,3 +233,8 @@ void SlidingPuzzle::gameLoop(int directionCode, int keyStroke) {
 		}
 	}
 }
+
+
+int SlidingPuzzle::getTotalMoveCount() {
+	return this->totalMoveCount;
+}

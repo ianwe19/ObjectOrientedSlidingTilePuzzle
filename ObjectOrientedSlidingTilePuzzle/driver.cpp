@@ -25,15 +25,45 @@
 
 
 int main() {
+	char keyStroke = ' ';
+	int directionCode = UNSET;
+	int boardWidth = 0;
+	int boardHeight = 0;
+	int choice = 0;
 
 	// seed pseudo rng
 	srand(time(NULL));
 
-	SlidingPuzzle puzzle0(4, 6);
+	// allow user to define some stuff
+	std::cout << "Enter board width: ";
+	std::cin >> boardWidth;
+	std::cout << "Enter board height: ";
+	std::cin >> boardHeight;
+
+	SlidingPuzzle puzzle0(boardWidth, boardHeight);
 
 	puzzle0.initializeBoard();
 
-	puzzle0.printBoard();
+	while (puzzle0.isBoardSolved()) { // to make sure the scrambled board isnt a solved board
+		puzzle0.scrambleBoard();
+	}
+
+	while (1) {
+		directionCode = UNSET;
+
+		puzzle0.printBoard();
+
+		puzzle0.gameLoop(keyStroke, directionCode);
+
+		system("cls"); // clear console window
+
+		// win condition check
+		if (puzzle0.isBoardSolved()) {
+			puzzle0.printBoard();
+			std::cout << "\nboard is solved\ntook " << puzzle0.totalMoveCount << " moves";
+			break;
+		}
+	}
 
 	return 0;
 }
