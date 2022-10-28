@@ -40,11 +40,13 @@ int main() {
 	std::cout << "Enter board height: ";
 	std::cin >> boardHeight;
 
+	system("cls"); // clear console window
+
 	SlidingPuzzle puzzle0(boardWidth, boardHeight);
 
 	puzzle0.initializeBoard();
 
-	while (puzzle0.isBoardSolved()) { // to make sure the scrambled board isnt a solved board
+	while (puzzle0.isBoardSolved()) { // make sure the scrambled board isnt a solved board
 		puzzle0.scrambleBoard();
 	}
 
@@ -55,12 +57,12 @@ int main() {
 
 		puzzle0.gameLoop(directionCode, keyStroke);
 
-		system("cls"); // clear console window
+		system("cls");
 
 		// win condition check
 		if (puzzle0.isBoardSolved()) {
 			puzzle0.printBoard();
-			std::cout << "\nboard is solved\ntook " << puzzle0.getTotalMoveCount() << " moves";
+			std::cout << "\nboard is solved\n\ntook " << puzzle0.getTotalMoveCount() << " moves\n\n";
 			break;
 		}
 	}
