@@ -63,7 +63,6 @@ void SlidingPuzzle::initializeBoard() {
 	for (int i = 0; i < this->boardHeight; i++) {
 		for (int j = 0; j < this->boardWidth; j++) {
 			this->theBoard[i][j] = counter;
-
 			counter++;
 		}
 	}
@@ -77,7 +76,6 @@ bool SlidingPuzzle::isBoardSolved() {
 		for (j = 0; j < this->boardWidth; j++) {
 			if (this->theBoard[i][j] != counter) {
 				return false;
-
 				break;
 			}
 			counter++;
