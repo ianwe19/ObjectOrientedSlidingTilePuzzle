@@ -1,6 +1,7 @@
 #include "specification.h"
 #include <iostream>
 #include <iomanip>
+#include <conio.h>
 
 	
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
@@ -193,9 +194,7 @@ void SlidingPuzzle::randomMove() {
 }
 
 
-int SlidingPuzzle::gameLoop(int directionCode) {
-	int moveCounter = 0;
-
+void SlidingPuzzle::gameLoop(int directionCode, int keyStroke) {
 	while (directionCode == UNSET) {
 		std::cout << "Input swap direction with WASD, or press B to solve with RNG\r";
 		keyStroke = _getch();
@@ -203,28 +202,28 @@ int SlidingPuzzle::gameLoop(int directionCode) {
 		switch (keyStroke) {
 		case 'w':
 			directionCode = SLIDE_UP;
-			slideTile(theBoard, SLIDE_UP);
-			moveCounter++;
+			slideTile(SLIDE_UP);
+			this->totalMoveCount++;
 			break;
 		case 'a':
 			directionCode = SLIDE_LEFT;
-			slideTile(theBoard, SLIDE_LEFT);
-			moveCounter++;
+			slideTile(SLIDE_LEFT);
+			this->totalMoveCount++;
 			break;
 		case 's':
 			directionCode = SLIDE_DOWN;
-			slideTile(theBoard, SLIDE_DOWN);
-			moveCounter++;
+			slideTile(SLIDE_DOWN);
+			this->totalMoveCount++;
 			break;
 		case 'd':
 			directionCode = SLIDE_RIGHT;
-			slideTile(theBoard, SLIDE_RIGHT);
-			moveCounter++;
+			slideTile(SLIDE_RIGHT);
+			this->totalMoveCount++;
 			break;
 		case 'b':
-			while (!isBoardSolved(theBoard)) {
-				randomMove(theBoard);
-				moveCounter++;
+			while (!isBoardSolved()) {
+				randomMove();
+				this->totalMoveCount++;
 			}
 			system("cls");
 			directionCode = BRUTE_FORCE;
@@ -233,5 +232,4 @@ int SlidingPuzzle::gameLoop(int directionCode) {
 			directionCode = UNSET;
 		}
 	}
-	return moveCounter;
 }
