@@ -53,14 +53,14 @@ int main() {
 
 		puzzle0.printBoard();
 
-		puzzle0.gameLoop(keyStroke, directionCode);
+		puzzle0.gameLoop(directionCode, keyStroke);
 
 		system("cls"); // clear console window
 
 		// win condition check
 		if (puzzle0.isBoardSolved()) {
 			puzzle0.printBoard();
-			std::cout << "\nboard is solved\ntook " << puzzle0.totalMoveCount << " moves";
+			std::cout << "\nboard is solved\ntook " << puzzle0.getTotalMoveCount() << " moves";
 			break;
 		}
 	}
