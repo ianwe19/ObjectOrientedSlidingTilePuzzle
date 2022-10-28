@@ -23,6 +23,7 @@
 
 // constructor for default board of 3x3
 SlidingPuzzle::SlidingPuzzle() {
+	this->totalMoveCount = 0;
 	this->boardWidth = 3;
 	this->boardHeight = 3;
 	this->pivotNum = 9;
@@ -34,8 +35,10 @@ SlidingPuzzle::SlidingPuzzle() {
 	}
 }
 
+
 // constructor for user defined board size
 SlidingPuzzle::SlidingPuzzle(int width, int height) {
+	this->totalMoveCount = 0;
 	this->boardWidth = width;
 	this->boardHeight = height;
 	this->pivotNum = this->boardWidth * this->boardHeight;
@@ -47,6 +50,7 @@ SlidingPuzzle::SlidingPuzzle(int width, int height) {
 	}
 }
 
+
 SlidingPuzzle::~SlidingPuzzle() {
 	// dealloc memory from each array in ptr array
 	for (int i = 0; i < this->boardHeight; i++) {
@@ -56,6 +60,7 @@ SlidingPuzzle::~SlidingPuzzle() {
 	// dealloc ptr array
 	delete[] this->theBoard;
 }
+
 
 void SlidingPuzzle::initializeBoard() {
 	int counter = 1;
@@ -67,6 +72,7 @@ void SlidingPuzzle::initializeBoard() {
 		}
 	}
 }
+
 
 bool SlidingPuzzle::isBoardSolved() {
 	int i, j;
@@ -83,6 +89,7 @@ bool SlidingPuzzle::isBoardSolved() {
 	}
 	return true;
 }
+
 
 bool SlidingPuzzle::slideTile(int directionCode) {
 	int i, j;
@@ -113,20 +120,20 @@ bool SlidingPuzzle::slideTile(int directionCode) {
 
 	switch (directionCode) {
 	case SLIDE_UP:
-		theBoard[pivotRow][pivotCol] = theBoard[pivotRow - 1][pivotCol];
-		theBoard[pivotRow - 1][pivotCol] = this->pivotNum;
+		this->theBoard[pivotRow][pivotCol] = this->theBoard[pivotRow - 1][pivotCol];
+		this->theBoard[pivotRow - 1][pivotCol] = this->pivotNum;
 		break;
 	case SLIDE_DOWN:
-		theBoard[pivotRow][pivotCol] = theBoard[pivotRow + 1][pivotCol];
-		theBoard[pivotRow + 1][pivotCol] = this->pivotNum;
+		this->theBoard[pivotRow][pivotCol] = this->theBoard[pivotRow + 1][pivotCol];
+		this->theBoard[pivotRow + 1][pivotCol] = this->pivotNum;
 		break;
 	case SLIDE_LEFT:
-		theBoard[pivotRow][pivotCol] = theBoard[pivotRow][pivotCol - 1];
-		theBoard[pivotRow][pivotCol - 1] = this->pivotNum;
+		this->theBoard[pivotRow][pivotCol] = this->theBoard[pivotRow][pivotCol - 1];
+		this->theBoard[pivotRow][pivotCol - 1] = this->pivotNum;
 		break;
 	case SLIDE_RIGHT:
-		theBoard[pivotRow][pivotCol] = theBoard[pivotRow][pivotCol + 1];
-		theBoard[pivotRow][pivotCol + 1] = this->pivotNum;
+		this->theBoard[pivotRow][pivotCol] = this->theBoard[pivotRow][pivotCol + 1];
+		this->theBoard[pivotRow][pivotCol + 1] = this->pivotNum;
 		break;
 	case UNSET: // unset if illegal move
 		return false;
@@ -134,9 +141,11 @@ bool SlidingPuzzle::slideTile(int directionCode) {
 	return true;
 }
 
+
 void SlidingPuzzle::scrambleBoard() {
 
 }
+
 
 void SlidingPuzzle::printBoard() {
 	int i, j;
@@ -145,20 +154,38 @@ void SlidingPuzzle::printBoard() {
 
 	for (i = 0; i < this->boardHeight; i++) {
 		for (j = 0; j < this->boardWidth; j++) {
-			if (theBoard[i][j] == this->pivotNum) {
+			if (this->theBoard[i][j] == this->pivotNum) {
 				std::cout << std::setw(4) << PIVOT_SYMBOL;
 			}
 			else {
-				if (theBoard[i][j] == counter) {
+				if (this->theBoard[i][j] == counter) {
 					// color stuff here
 				}
 				else {
 				}
-				std::cout << std::setw(4) << theBoard[i][j];
+				std::cout << std::setw(4) << this->theBoard[i][j];
 			}
 			counter++;
 		}
 		std::cout << "\n\n";
 	}
 	std::cout << "\n";
+}
+
+void SlidingPuzzle::randomMove() {
+	switch (rand() % 4 + 1) {
+
+	case 1:
+		slideTile(SLIDE_UP);
+		break;
+	case 2:
+		slideTile(SLIDE_DOWN);
+		break;
+	case 3:
+		slideTile(SLIDE_LEFT);
+		break;
+	case 4:
+		slideTile(SLIDE_RIGHT);
+		break;
+	}
 }

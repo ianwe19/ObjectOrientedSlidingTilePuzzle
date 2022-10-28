@@ -8,6 +8,7 @@ private:
 	int boardWidth;
 	int boardHeight;
 	int pivotNum;
+	int totalMoveCount;
 
 public:
 	SlidingPuzzle();
@@ -19,5 +20,6 @@ public:
 	bool slideTile(int);
 	void scrambleBoard();
 	void printBoard();
+	void randomMove();
 };
 #endif
