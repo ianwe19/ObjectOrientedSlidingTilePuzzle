@@ -86,47 +86,47 @@ bool SlidingPuzzle::isBoardSolved() {
 
 bool SlidingPuzzle::slideTile(int directionCode) {
 	int i, j;
-	int spaceRow = int(this->boardHeight);
-	int spaceCol = int(this->boardWidth);
+	int pivotRow = int(this->boardHeight);
+	int pivotCol = int(this->boardWidth);
 
 	for (i = 0; i < this->boardHeight; i++) {
 		for (j = 0; j < this->boardWidth; j++) {
 			if (theBoard[i][j] == this->pivotNum) {
-				spaceRow = i;
-				spaceCol = j;
+				pivotRow = i;
+				pivotCol = j;
 			}
 		}
 	}
 
-	if (spaceRow == this->boardHeight - 1 && directionCode == SLIDE_DOWN) { // detect and prevent illegal moves
+	if (pivotRow == this->boardHeight - 1 && directionCode == SLIDE_DOWN) { // detect and prevent illegal moves
 		directionCode = UNSET;                                     // e.g. if pivot is in top row, prevent moving up
 	}
-	else if (spaceRow == 0 && directionCode == SLIDE_UP) {
+	else if (pivotRow == 0 && directionCode == SLIDE_UP) {
 		directionCode = UNSET;
 	}
-	else if (spaceCol == this->boardWidth - 1 && directionCode == SLIDE_RIGHT) {
+	else if (pivotCol == this->boardWidth - 1 && directionCode == SLIDE_RIGHT) {
 		directionCode = UNSET;
 	}
-	else if (spaceCol == 0 && directionCode == SLIDE_LEFT) {
+	else if (pivotCol == 0 && directionCode == SLIDE_LEFT) {
 		directionCode = UNSET;
 	}
 
 	switch (directionCode) {
 	case SLIDE_UP:
-		theBoard[spaceRow][spaceCol] = theBoard[spaceRow - 1][spaceCol];
-		theBoard[spaceRow - 1][spaceCol] = this->pivotNum;
+		theBoard[pivotRow][pivotCol] = theBoard[pivotRow - 1][pivotCol];
+		theBoard[pivotRow - 1][pivotCol] = this->pivotNum;
 		break;
 	case SLIDE_DOWN:
-		theBoard[spaceRow][spaceCol] = theBoard[spaceRow + 1][spaceCol];
-		theBoard[spaceRow + 1][spaceCol] = this->pivotNum;
+		theBoard[pivotRow][pivotCol] = theBoard[pivotRow + 1][pivotCol];
+		theBoard[pivotRow + 1][pivotCol] = this->pivotNum;
 		break;
 	case SLIDE_LEFT:
-		theBoard[spaceRow][spaceCol] = theBoard[spaceRow][spaceCol - 1];
-		theBoard[spaceRow][spaceCol - 1] = this->pivotNum;
+		theBoard[pivotRow][pivotCol] = theBoard[pivotRow][pivotCol - 1];
+		theBoard[pivotRow][pivotCol - 1] = this->pivotNum;
 		break;
 	case SLIDE_RIGHT:
-		theBoard[spaceRow][spaceCol] = theBoard[spaceRow][spaceCol + 1];
-		theBoard[spaceRow][spaceCol + 1] = this->pivotNum;
+		theBoard[pivotRow][pivotCol] = theBoard[pivotRow][pivotCol + 1];
+		theBoard[pivotRow][pivotCol + 1] = this->pivotNum;
 		break;
 	case UNSET: // unset if illegal move
 		return false;
