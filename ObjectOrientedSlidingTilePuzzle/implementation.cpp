@@ -27,6 +27,7 @@ SlidingPuzzle::SlidingPuzzle() {
 	this->boardWidth = 3;
 	this->boardHeight = 3;
 	this->pivotNum = 9;
+	this->scrambleNum = 15000;
 
 	this->theBoard = new(int* [3]);
 
@@ -42,6 +43,7 @@ SlidingPuzzle::SlidingPuzzle(int width, int height) {
 	this->boardWidth = width;
 	this->boardHeight = height;
 	this->pivotNum = this->boardWidth * this->boardHeight;
+	this->scrambleNum = 15000;
 
 	this->theBoard = new(int* [this->boardHeight]);
 
@@ -143,7 +145,12 @@ bool SlidingPuzzle::slideTile(int directionCode) {
 
 
 void SlidingPuzzle::scrambleBoard() {
+	int i = int(0);
 
+	while (i < NUM_SCRAMBLE) {
+		randomMove();
+		i++;
+	}
 }
 
 

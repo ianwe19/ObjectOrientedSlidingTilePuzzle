@@ -8,6 +8,7 @@ private:
 	int boardWidth;
 	int boardHeight;
 	int pivotNum;
+	int scrambleNum;
 	int totalMoveCount;
 
 public:
