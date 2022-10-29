@@ -22,7 +22,7 @@ public:
 	void scrambleBoard();
 	void printBoard();
 	void randomMove();
-	void gameLoop(int, int);
+	char gameLoop(int, int);
 	int getTotalMoveCount();
 };
 #endif

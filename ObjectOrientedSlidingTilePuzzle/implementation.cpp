@@ -12,6 +12,7 @@
 #define SLIDE_LEFT		3		// pass to slideTile() to trigger LEFT movement
 #define SLIDE_RIGHT		4		// pass to slideTile() to trigger RIGHT movement
 #define BRUTE_FORCE     999     // pass to inputLoop() to solve with RNG
+#define ESC            27
 
 #define UNSET			-1		// used to arbitrarily indicate an undetermined state in a constuct
 
@@ -145,7 +146,7 @@ bool SlidingPuzzle::slideTile(int directionCode) {
 
 void SlidingPuzzle::scrambleBoard() {
 	for (int i = 0; i < this->scrambleNum; i++) {
-		randomMove();
+		this->randomMove();
 	}
 }
 
@@ -194,9 +195,11 @@ void SlidingPuzzle::randomMove() {
 }
 
 
-void SlidingPuzzle::gameLoop(int directionCode, int keyStroke) {
+char SlidingPuzzle::gameLoop(int directionCode, int keyStroke) {
 	while (directionCode == UNSET) {
-		std::cout << "Input swap direction with WASD, or press B to solve with RNG\r";
+		std::cout << "WASD to swap\n" 
+			<< "B to solve with RNG (this only works sometimes, and even less so on larger boards)\n"
+			<< "ESC to quit\r";
 		keyStroke = _getch();
 
 		switch (keyStroke) {
@@ -228,9 +231,14 @@ void SlidingPuzzle::gameLoop(int directionCode, int keyStroke) {
 			system("cls");
 			directionCode = BRUTE_FORCE;
 			break;
+		case ESC:
+			directionCode = ESC;
+			break;
 		default:
 			directionCode = UNSET;
 		}
+
+		return directionCode;
 	}
 }
 

@@ -5,8 +5,6 @@
 #include <Windows.h>
 
 
-#define NUM_SCRAMBLE    1000000 // number of times to scramble board
-
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
 
 // direction codes (part of the slideTile() interface)
@@ -15,6 +13,7 @@
 #define SLIDE_LEFT		3		// pass to slideTile() to trigger LEFT movement
 #define SLIDE_RIGHT		4		// pass to slideTile() to trigger RIGHT movement
 #define BRUTE_FORCE     999     // pass to inputLoop() to solve with RNG
+#define ESC             27
 
 // if there isnt an extra line here, the comment on what is currently line 23 inexplicably causes a compiler error
 #define UNSET			-1		// used to arbitrarily indicate an undetermined state in a constuct
@@ -55,7 +54,7 @@ int main() {
 
 		puzzle0.printBoard();
 
-		puzzle0.gameLoop(directionCode, keyStroke);
+		directionCode = puzzle0.gameLoop(directionCode, keyStroke);
 
 		system("cls");
 
@@ -63,6 +62,10 @@ int main() {
 		if (puzzle0.isBoardSolved()) {
 			puzzle0.printBoard();
 			std::cout << "\nboard is solved\n\ntook " << puzzle0.getTotalMoveCount() << " moves\n\n";
+			break;
+		}
+		else if (directionCode == ESC) {
+			std::cout << "\nExiting...\n";
 			break;
 		}
 	}
