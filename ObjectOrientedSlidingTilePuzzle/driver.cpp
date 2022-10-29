@@ -61,7 +61,7 @@ int main() {
 		// win condition check
 		if (puzzle0.isBoardSolved()) {
 			puzzle0.printBoard();
-			std::cout << "\nboard is solved\n\ntook " << puzzle0.getTotalMoveCount() << " moves\n\n";
+			std::cout << "\nBoard is solved\n\nTook " << puzzle0.getTotalMoveCount() << " moves\n\n";
 			break;
 		}
 		else if (directionCode == ESC) {
