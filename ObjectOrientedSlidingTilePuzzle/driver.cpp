@@ -65,7 +65,7 @@ int main() {
 			break;
 		}
 		else if (directionCode == ESC) {
-			std::cout << "\nExiting...\n";
+			std::cout << "\nExiting...\n\nGave up after " << puzzle0.getTotalMoveCount() << " moves\n\n";
 			break;
 		}
 	}
