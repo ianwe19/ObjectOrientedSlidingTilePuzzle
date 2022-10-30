@@ -77,11 +77,10 @@ void SlidingPuzzle::initializeBoard() {
 
 
 bool SlidingPuzzle::isBoardSolved() {
-	int i, j;
 	int counter = 1;
 
-	for (i = 0; i < this->boardHeight; i++) {
-		for (j = 0; j < this->boardWidth; j++) {
+	for (int i = 0; i < this->boardHeight; i++) {
+		for (int j = 0; j < this->boardWidth; j++) {
 			if (this->theBoard[i][j] != counter) {
 				return false;
 				break;
@@ -94,12 +93,11 @@ bool SlidingPuzzle::isBoardSolved() {
 
 
 bool SlidingPuzzle::slideTile(int directionCode) {
-	int i, j;
 	int pivotRow = int(this->boardHeight);
 	int pivotCol = int(this->boardWidth);
 
-	for (i = 0; i < this->boardHeight; i++) {
-		for (j = 0; j < this->boardWidth; j++) {
+	for (int i = 0; i < this->boardHeight; i++) {
+		for (int j = 0; j < this->boardWidth; j++) {
 			if (theBoard[i][j] == this->pivotNum) {
 				pivotRow = i;
 				pivotCol = j;
