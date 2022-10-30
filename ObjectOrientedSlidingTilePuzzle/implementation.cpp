@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <conio.h>
+#include <windows.h>
 
 	
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
@@ -152,22 +153,27 @@ void SlidingPuzzle::scrambleBoard() {
 
 
 void SlidingPuzzle::printBoard() {
-	int i, j;
-
 	int counter = 1;
 
-	for (i = 0; i < this->boardHeight; i++) {
-		for (j = 0; j < this->boardWidth; j++) {
+	HANDLE hConsole;
+	hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(hConsole, COLOR_GREEN);
+
+	for (int i = 0; i < this->boardHeight; i++) {
+		for (int j = 0; j < this->boardWidth; j++) {
 			if (this->theBoard[i][j] == this->pivotNum) {
+				SetConsoleTextAttribute(hConsole, COLOR_DEFAULT);
 				std::cout << std::setw(4) << PIVOT_SYMBOL;
 			}
 			else {
 				if (this->theBoard[i][j] == counter) {
-					// color stuff here
+					SetConsoleTextAttribute(hConsole, COLOR_GREEN);
 				}
 				else {
+					SetConsoleTextAttribute(hConsole, COLOR_RED);
 				}
 				std::cout << std::setw(4) << this->theBoard[i][j];
+				SetConsoleTextAttribute(hConsole, COLOR_DEFAULT); // reset color to default
 			}
 			counter++;
 		}

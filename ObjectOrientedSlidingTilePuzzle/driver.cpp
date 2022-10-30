@@ -2,7 +2,6 @@
 #include <iostream>
 #include <iomanip>
 #include <time.h>
-#include <Windows.h>
 
 
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
@@ -15,12 +14,8 @@
 #define BRUTE_FORCE     999     // pass to inputLoop() to solve with RNG
 #define ESC             27
 
-// if there isnt an extra line here, the comment on what is currently line 23 inexplicably causes a compiler error
 #define UNSET			-1		// used to arbitrarily indicate an undetermined state in a constuct
 
-#define COLOR_DEFAULT	7
-#define COLOR_RED		12
-#define COLOR_GREEN		10
 
 
 int main() {
