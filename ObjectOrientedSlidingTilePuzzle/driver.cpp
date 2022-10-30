@@ -4,8 +4,6 @@
 #include <time.h>
 
 
-#define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
-
 // direction codes (part of the slideTile() interface)
 #define SLIDE_UP		1		// pass to slideTile() to trigger UP movement
 #define SLIDE_DOWN		2		// pass to slideTile() to trigger DOWN movement
@@ -44,6 +42,7 @@ int main() {
 		puzzle0.scrambleBoard();
 	}
 
+	// main game loop
 	while (1) {
 		directionCode = UNSET;
 
