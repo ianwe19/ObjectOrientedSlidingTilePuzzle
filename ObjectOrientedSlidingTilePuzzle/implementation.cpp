@@ -6,6 +6,7 @@
 
 	
 #define PIVOT_SYMBOL	"*"		// used to show the pivot location when drawing the board
+#define SCRAMBLE_NUM    30000
 
 // direction codes (part of the slideTile() interface)
 #define SLIDE_UP		1		// pass to slideTile() to trigger UP movement
@@ -28,7 +29,6 @@ SlidingPuzzle::SlidingPuzzle() {
 	this->boardWidth = 3;
 	this->boardHeight = 3;
 	this->pivotNum = 9;
-	this->scrambleNum = 15000;
 
 	this->theBoard = new(int* [3]);
 
@@ -44,7 +44,6 @@ SlidingPuzzle::SlidingPuzzle(int width, int height) {
 	this->boardWidth = width;
 	this->boardHeight = height;
 	this->pivotNum = this->boardWidth * this->boardHeight;
-	this->scrambleNum = 15000;
 
 	this->theBoard = new(int* [this->boardHeight]);
 
@@ -146,7 +145,7 @@ bool SlidingPuzzle::slideTile(int directionCode) {
 
 
 void SlidingPuzzle::scrambleBoard() {
-	for (int i = 0; i < this->scrambleNum; i++) {
+	for (int i = 0; i < SCRAMBLE_NUM; i++) {
 		this->randomMove();
 	}
 }
