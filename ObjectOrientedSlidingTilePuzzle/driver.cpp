@@ -15,6 +15,8 @@
 #define UNSET			-1		// used to arbitrarily indicate an undetermined state in a constuct
 
 
+int getInput();
+
 
 int main() {
 	char keyStroke = ' ';
@@ -27,9 +29,9 @@ int main() {
 	srand(time(NULL));
 
 	std::cout << "Enter board width: ";
-	std::cin >> boardWidth;
+	boardWidth = getInput();
 	std::cout << "Enter board height: ";
-	std::cin >> boardHeight;
+	boardHeight = getInput();
 
 	system("cls"); // clear console window
 
@@ -65,4 +67,20 @@ int main() {
 	}
 
 	return 0;
+}
+
+
+int getInput() {
+	int num = 0;
+
+	std::cin >> num;
+
+	while (!(std::cin) || num < 1) { // for input sanitization
+		std::cin.clear();
+		std::cout << "Enter a positive integer: ";
+		std::cin >> num;
+		rewind(stdin); // clear buffer
+	}
+
+	return num;
 }
