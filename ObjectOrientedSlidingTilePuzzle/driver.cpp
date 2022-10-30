@@ -26,7 +26,6 @@ int main() {
 	// seed pseudo rng
 	srand(time(NULL));
 
-	// allow user to define some stuff
 	std::cout << "Enter board width: ";
 	std::cin >> boardWidth;
 	std::cout << "Enter board height: ";
@@ -58,6 +57,7 @@ int main() {
 			std::cout << "\nBoard is solved\n\nTook " << puzzle0.getTotalMoveCount() << " moves\n\n";
 			break;
 		}
+		// allow user to quit
 		else if (directionCode == ESC) {
 			std::cout << "\nExiting...\n\nGave up after " << puzzle0.getTotalMoveCount() << " moves\n\n";
 			break;
